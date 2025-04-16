@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صرافة أدوية مستشفى الملك فهد للقوات المسلحة</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 30px;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin: 15px auto;
+            width: 300px;
+            text-align: right;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007b5e;
+            color: white;
+            cursor: pointer;
+        }
+        .prescription {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+        .footer {
+            margin-top: 40px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo">
+        <img src="shaar-almostashfa.png" alt="شعار المستشفى" width="120">
+        <img src="shaar-alsehha.png" alt="شعار وزارة الصحة" width="120">
+        <h2>صرافة أدوية مستشفى الملك فهد للقوات المسلحة</h2>
+    </div>
+
+    <div class="input-group">
+        <label for="nationalId">أدخل الهوية الوطنية أو الإقامة (10 أرقام):</label>
+        <input type="text" id="nationalId" maxlength="10" oninput="validateID(this)">
+    </div>
+
+    <div class="input-group">
+        <label for="confirmId">تأكيد الهوية الوطنية أو الإقامة:</label>
+        <input type="text" id="confirmId" maxlength="10" oninput="confirmID(this)">
+    </div>
+
+    <div id="patientName" class="input-group" style="display: none;">
+        <strong>اسم المريض:</strong> محمد أحمد العتيبي
+    </div>
+
+    <div class="input-group">
+        <button onclick="showPrescription()">وصفة الطبيب وصرف الأدوية</button>
+    </div>
+
+    <div class="prescription" id="prescriptionBox">
+        <h3>وصفة طبية</h3>
+        <p><strong>اسم الطبيبة:</strong> الدكتورة عنود فهد العنزي</p>
+        <p><strong>تشخيص:</strong> التهاب في الحلق</p>
+        <p><strong>العلاج:</strong> مضاد حيوي - أموكسيسيلين 500 ملغ</p>
+        <img src="amoxicillin.png" alt="أموكسيسيلين" width="100">
+        <p><strong>تاريخ الوصفة:</strong> 11/11/1446 هـ</p>
+        <button onclick="confirmDispense()">تأكيد وصرف الأدوية</button>
+    </div>
+
+    <div class="footer" id="footer" style="display: none;">
+        نسأل الله لكم الشفاء العاجل، شكرًا لاستخدامكم صرافة الأدوية.
+    </div>
+
+    <script>
+        function validateID(input) {
+            if (input.value.length === 10) {
+                document.getElementById("confirmId").focus();
+            }
+        }
+
+        function confirmID(input) {
+            const id = document.getElementById("nationalId").value;
+            if (input.value === id && input.value.length === 10) {
+                document.getElementById("patientName").style.display = 'block';
+            }
+        }
+
+        function showPrescription() {
+            document.getElementById("prescriptionBox").style.display = 'block';
+        }
+
+        function confirmDispense() {
+            document.getElementById("footer").style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
